@@ -73,6 +73,9 @@ const EditModal = ({
         if (value.trim() && !validateEmail(value)) {
           setErrors({ ...errors, email: "Invalid email format" });
         }
+        if (!value.trim()) {
+          setErrors({ ...errors, email: "This field is required" });
+        }
         break;
       case "phoneNumber":
         setPhone(value);
