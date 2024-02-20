@@ -9,6 +9,17 @@ function App() {
   const handleDelete = (id) => {
     setCards(cards.filter((card) => card.id !== id));
   };
+
+  const handleSaveModal = (id, { name, email, website }) => {
+    const updatedCards = cards.map((card) => {
+      if (card.id === id) {
+        return { ...card, title: name, email, link: website };
+      }
+      return card;
+    });
+    setCards(updatedCards);
+  };
+
   return (
     <div className="App">
       <div className="card-container">
@@ -21,6 +32,7 @@ function App() {
             email={card.email}
             link={card.link}
             onDelete={handleDelete}
+            onSave={handleSaveModal}
           />
         ))}
       </div>

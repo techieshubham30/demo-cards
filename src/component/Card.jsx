@@ -3,7 +3,7 @@ import { CiHeart, CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import EditModal from "./EditModal";
 
-const Card = ({ imageUrl, title, email, link, onDelete, id }) => {
+const Card = ({ imageUrl, title, email, link, onDelete, id, onSave }) => {
   const [liked, setLiked] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -24,7 +24,7 @@ const Card = ({ imageUrl, title, email, link, onDelete, id }) => {
   };
 
   const handleSaveModal = ({ name, email, website }) => {
-    console.log("Saving edited details:", { name, email, website });
+    onSave(id, { name, email, website });
     handleCloseModal();
   };
 
