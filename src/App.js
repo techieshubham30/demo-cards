@@ -10,10 +10,10 @@ function App() {
     setCards(cards.filter((card) => card.id !== id));
   };
 
-  const handleSaveModal = (id, { name, email, website }) => {
+  const handleSaveModal = (id, { name, email, phoneNumber, website }) => {
     const updatedCards = cards.map((card) => {
       if (card.id === id) {
-        return { ...card, title: name, email, link: website };
+        return { ...card, title: name, email, phoneNumber, link: website };
       }
       return card;
     });
@@ -30,6 +30,7 @@ function App() {
             imageUrl={card.imageUrl}
             title={card.title}
             email={card.email}
+            phoneNumber={card.phoneNumber}
             link={card.link}
             onDelete={handleDelete}
             onSave={handleSaveModal}

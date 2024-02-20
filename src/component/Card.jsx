@@ -3,7 +3,7 @@ import { CiHeart, CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import EditModal from "./EditModal";
 
-const Card = ({ imageUrl, title, email, link, onDelete, id, onSave }) => {
+const Card = ({ imageUrl, title, email, phoneNumber, link, onDelete, id, onSave }) => {
   const [liked, setLiked] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -23,8 +23,8 @@ const Card = ({ imageUrl, title, email, link, onDelete, id, onSave }) => {
     setShowModal(false);
   };
 
-  const handleSaveModal = ({ name, email, website }) => {
-    onSave(id, { name, email, website });
+  const handleSaveModal = ({ name, email, phoneNumber, website }) => {
+    onSave(id, { name, email, phoneNumber, website });
     handleCloseModal();
   };
 
@@ -34,16 +34,18 @@ const Card = ({ imageUrl, title, email, link, onDelete, id, onSave }) => {
       <div className="card-details">
         <h2>{title}</h2>
         <p>{email}</p>
+        <p>{phoneNumber}</p>
         <a href={link} target="_blank" rel="noopener noreferrer">
           Link
         </a>
-        <div className="card-actions">
+      </div>
+      <div className="card-actions">
           <CiHeart
             onClick={handleLike}
-            className="icon"
+            className="icon border-icon"
             style={{ color: liked ? "red" : "inherit" }}
           />{" "}
-          <CiEdit onClick={handleWrite} className="icon" />
+          <CiEdit onClick={handleWrite} className="icon border-icon" />
           <MdDelete onClick={handleDelete} className="icon" />
         </div>
 
@@ -51,12 +53,12 @@ const Card = ({ imageUrl, title, email, link, onDelete, id, onSave }) => {
           <EditModal
             defaultName={title}
             defaultEmail={email}
+            defaultPhone = {phoneNumber}
             defaultWebsite={link}
             onSave={handleSaveModal}
             onCancel={handleCloseModal}
           />
         )}
-      </div>
     </div>
   );
 };
