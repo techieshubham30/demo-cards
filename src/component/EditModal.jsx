@@ -3,16 +3,18 @@ import React, { useState } from "react";
 const EditModal = ({
   defaultName,
   defaultEmail,
+  defaultPhone,
   defaultWebsite,
   onSave,
   onCancel,
 }) => {
   const [name, setName] = useState(defaultName);
   const [email, setEmail] = useState(defaultEmail);
+  const [phoneNumber, setPhone] = useState(defaultPhone);
   const [website, setWebsite] = useState(defaultWebsite);
 
   const handleSave = () => {
-    onSave({ name, email, website });
+    onSave({ name, email, phoneNumber, website });
   };
 
   const handleCancel = () => {
@@ -40,6 +42,14 @@ const EditModal = ({
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label>Phone:</label>
+          <input
+            type="text"
+            value={phoneNumber}
+            onChange={(e) => setPhone(e.target.value)}
           />
         </div>
         <div className="form-group">
