@@ -103,15 +103,23 @@ const EditModal = ({
   };
 
   return (
+    <div className="modalMask">
     <div className="modal">
+      <div className="modal-header">
+      <h2 className="modalTitle">Basic Modal</h2>
+      </div>
+      <hr  />
       <div className="modal-content">
         <span className="close" onClick={handleCancel}>
           &times;
         </span>
-        <h2>Basic Modal</h2>
-        <div className="form-group">
+        
+        <div className="form-group" style={{ display: "flex", alignItems: "flex-start", marginBottom: errors.name ? "2px" : "24px" }}>
+        <div className="modalFields">
           <span className="required">*</span>
-          <label>Name:</label>
+          <label className="modalLabel">Name:</label>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", flex: "1" }}>
           <input
             type="text"
             value={name}
@@ -126,10 +134,15 @@ const EditModal = ({
             </p>
           )}
         </div>
-        <div className="form-group">
-          <label>
+      </div>
+
+      <div className="form-group" style={{ display: "flex", alignItems: "flex-start", marginBottom: errors.email ? "2px" : "24px" }}>
+        <div className="modalFields">
+          <label className="modalLabel">
             <span className="required">*</span>Email:
           </label>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", flex: "1" }}>
           <input
             type="email"
             value={email}
@@ -144,27 +157,37 @@ const EditModal = ({
             </p>
           )}
         </div>
-        <div className="form-group">
+      </div>
+
+      <div className="form-group" style={{ display: "flex", alignItems: "flex-start", marginBottom: errors.phoneNumber ? "2px" : "24px" }}>
+        <div className="modalFields">
           <span className="required">*</span>
-          <label>Phone:</label>
+          <label className="modalLabel">Phone:</label>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", flex: "1" }}>
           <input
             type="text"
             value={phoneNumber}
             onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
           />
           {errors.phoneNumber && (
-            <p className="error-message">{errors.phoneNumber}</p>
-          )}{" "}
+            <p className="error-message" style={{ color: "#f5222d" }}>{errors.phoneNumber}</p>
+          )}
         </div>
-        <div className="form-group">
+      </div>
+
+        <div className="form-group" style={{ display: "flex", alignItems: "flex-start", marginBottom: errors.website ? "2px" : "24px" }}>
+        <div className="modalFields">
           <span className="required">*</span>
-          <label>Website:</label>
+          <label className="modalLabel">Website:</label>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", flex: "1" }}>
           <input
             type="text"
             value={website}
             onChange={(e) => handleInputChange("website", e.target.value)}
             style={{
-              borderColor: errors.phoneNumber && "#f5222d",
+              borderColor: errors.website && "#f5222d",
             }}
           />
           {errors.website && (
@@ -173,15 +196,20 @@ const EditModal = ({
             </p>
           )}
         </div>
-        <div className="button-container">
-          <button className="secondary-button" onClick={handleCancel}>
+      </div>
+
+
+      </div>
+      <hr />
+      <div className="button-container">
+          <button className="cancel-button modal-button" onClick={handleCancel}>
             Cancel
           </button>
-          <button className="primary-button" onClick={handleSave}>
+          <button className="save-button modal-button" onClick={handleSave}>
             OK
           </button>
         </div>
-      </div>
+    </div>
     </div>
   );
 };
